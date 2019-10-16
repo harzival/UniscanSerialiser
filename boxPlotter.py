@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axis3D
+from mpl_toolkits import mplot3d
 from vec3 import Vec3
 
 
 class BoxPlotter:
     def __init__(self):
         self.fig = plt.figure()
-        self.ax = plt.axes(projection=Axis3D.name)
+        self.ax = plt.axes(projection='3d')
 
     def start(self):
         plt.show()

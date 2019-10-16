@@ -25,16 +25,16 @@ class Box:
         self.x_dist = Vec3(data[3], data[4], data[5])
         self.y_dist = Vec3(data[6], data[7], data[8])
         self.z_dist = Vec3(data[9], data[10], data[11])
-        self.min = self.center - self.x_dist - self.y_dist - self.z_dist
-        self.max = self.center + self.x_dist + self.y_dist + self.z_dist
+        self.min = self.mid - self.x_dist - self.y_dist - self.z_dist
+        self.max = self.mid + self.x_dist + self.y_dist + self.z_dist
         self.width = abs(self.min.x - self.max.x)
         self.depth = abs(self.min.y - self.max.y)
         self.height = abs(self.min.z - self.max.z)
-        self.x_bound_point = self.center + self.x_dist
+        self.x_bound_point = self.mid + self.x_dist
         self.y_bound_point = self.x_bound_point + self.y_dist
         self.z_bound_point = self.y_bound_point + self.z_dist
         self.side_points = self.calc_side_points(self.min, self.max, self.mid)
-        self.cornerPoints = self.calc_corner_points(self.min, self.max)
+        self.corner_points = self.calc_corner_points(self.min, self.max)
 
     def calc_side_points(self, min, max, mid):
         return [
