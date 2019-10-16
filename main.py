@@ -1,39 +1,50 @@
-from vec3 import Vec3
 from box import Box
 from obj import Obj
-from glb import Glb
 from boxPlotter import BoxPlotter
-from b3dm import B3dm
-from misc import createDirIfDoesNotExist
-
+from misc import create_dir_if_absent
 import os
 
-def main ():
-    objRootDirPath = "C:/Users/harzival/Desktop/uniscanTo3DTiles/development-mesh-data/testing/obj"
-    glbRootDirPath = "C:/Users/harzival/Desktop/uniscanTo3DTiles/development-mesh-data/testing/gltf"
-    b3dmRootDirPath = "C:/Users/harzival/Desktop/uniscanTo3DTiles/development-mesh-data/testing/b3dm"
 
-    createDirIfDoesNotExist ( glbRootDirPath )
-    createDirIfDoesNotExist ( b3dmRootDirPath )
+def main():
+    obj_root_path = (
+        "C:/Users/harzival/Desktop"
+        "/uniscanTo3DTiles/development-mesh-data"
+        "/testing/obj"
+    )
+    glb_root_path = (
+        "C:/Users/harzival/Desktop"
+        "/uniscanTo3DTiles/development-mesh-data"
+        "/testing/glb"
+    )
+    b3dm_root_path = (
+        "C:/Users/harzival/Desktop"
+        "/uniscanTo3DTiles/development-mesh-data"
+        "/testing/b3dm"
+    )
 
-    objList = Obj.getObjListFromRootPath ( objRootDirPath )
-    boxList = []
+    create_dir_if_absent(glb_root_path)
+    create_dir_if_absent(b3dm_root_path)
 
-    for obj in objList:
-        obj.writeNewMtlData ()
-        createDirIfDoesNotExist ( os.path.join ( glbRootDirPath, obj.lodDirName ) )
-        obj.convertToGlb ( glbRootDirPath )
-        createDirIfDoesNotExist ( os.path.join ( b3dmRootDirPath, obj.glb.lodDirName ) )
-        obj.glb.convertToB3dm ( b3dmRootDirPath )
-        obj.glb.b3dm.box = obj.calcMinMaxBoundingBox()
-        boxList.append ( obj.glb.b3dm.box )
-    
-    worldBox = Box.createParentBoxFromBoxList ( boxList )
+    obj_list = Obj.get_obj_list_from_root_path(obj_root_path)
+    box_list = []
 
-    plotter = BoxPlotter ()
-    plotter.setGraphSizeLimitBox ( worldBox )
+    for obj in obj_list:
+        obj.write_new_mtl_data()
+        create_dir_if_absent(os.path.join(glb_root_path, obj.lod_dir_name))
+        obj.convert_to_glb(glb_root_path)
+        create_dir_if_absent(
+            os.path.join(b3dm_root_path, obj.glb.lod_dir_name)
+        )
+        obj.glb.convert_to_b3dm(b3dm_root_path)
+        obj.glb.b3dm.box = obj.calc_geometry_bounding_box()
+        box_list.append(obj.glb.b3dm.box)
 
-    plotter.drawEdges ( objList[0].glb.b3dm.box )
+    world_box = Box.create_parent_box_from_box_list(box_list)
+
+    plotter = BoxPlotter()
+    # plotter.set_plot_size_limit_box ( world_box )
+    plotter.draw_edges(world_box)
+    plotter.draw_edges(obj_list[0].glb.b3dm.box)
     plotter.start()
 
 
