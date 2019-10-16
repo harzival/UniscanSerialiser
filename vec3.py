@@ -18,12 +18,18 @@ class Vec3 ( object ):
         z = self.z - other.z
         return Vec3 ( x, y, z )
 
-    def zero ( self ):
-        return self.__init__ ( 0, 0, 0 )
-
-    def one ( self ):
-        return self.__init__ ( 1, 1, 1 )
+    @classmethod
+    def zero ( cls ):
+        return cls ( 0, 0, 0 )
+        
+    @classmethod
+    def one ( cls ):
+        return cls ( 1, 1, 1 )
     
     def transformAxisZUp ( self ):
-        return self.__init__ ( x =  self.x, y = -self.z, z = self.y )
+        old = self
+        self.x =  old.x 
+        self.y = -old.z
+        self.z =  old.y
+        return self
     

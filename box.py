@@ -38,19 +38,20 @@ class Box:
             Vec3 ( max.x, min.y, max.z ),   # Corner 7
             Vec3 ( max.x, max.y, max.z ) ]  # Corner 8
     
-    def createFromMinMax ( self, min = Vec3(0,0,0), max = Vec3(0,0,0) ):
+    @classmethod
+    def createFromMinMax ( cls, min, max ):
         center = Vec3 ( 
             ( min.x + max.x ) / 2.0, 
             ( min.y + max.y ) / 2.0, 
             ( min.z + max.z ) / 2.0 )
-        return self.__init__ ( [
+        return cls ( [
             center.x, center.y, center.z, 
             abs ( min.x - max.x ) / 2, 0, 0,
             0, abs ( min.y - max.y ) / 2, 0,
             0, 0, abs ( min.z - max.z ) / 2 ] )
     
-    @staticmethod
-    def createParentBoxFromBoxList ( boxList ):
+    @classmethod
+    def createParentBoxFromBoxList ( cls, boxList ):
         min = Vec3(0,0,0)
         max = Vec3(0,0,0)
         for i, box in enumerate ( boxList ):
@@ -70,6 +71,6 @@ class Box:
                         min.y = box.min.y
                 if ( box.min.z < min.z ):
                         min.z = box.min.z
-        return Box.createFromMinMax ( min, max )
+        return cls.createFromMinMax ( min, max )
     
     

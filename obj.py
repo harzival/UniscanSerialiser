@@ -3,6 +3,7 @@ from os import path, listdir, scandir, remove
 from collections import namedtuple
 from glb import Glb
 from vec3 import Vec3
+from box import Box
 
 class Obj ( object ):
     def __init__ (self, rootDirPath = None, lodDirName = None, fileName = None ):
@@ -43,14 +44,14 @@ class Obj ( object ):
 
     @staticmethod
     def getObjListFromRootPath ( rootDirPath ):
-        objArray = []
+        objList = []
         for lodDir in scandir ( rootDirPath ):
             for fileName in listdir ( lodDir ):
                 if fileName.endswith ( ".obj" ):
                     obj = Obj ( rootDirPath, lodDir.name, fileName )
                     print ( "UNISCAN: Adding tile {0} from {1} to the serialiser queue.".format ( obj.tileName, obj.lodDirName ) )
-                    objArray.append ( obj )
-        return objArray
+                    objList.append ( obj )
+        return objList
     
     def getMtlData ( self ):
         openedObjFile = open ( self.path )
@@ -77,22 +78,24 @@ class Obj ( object ):
             print ( "UNISCAN: MTL file for OBJ does not exist, will now create it." )
         try:
             mtlFile = open ( mtlPath, "x")
-            mtlFile.write ( getMtlData ( self.path ) )
+            mtlFile.write ( self.getMtlData () )
             mtlFile.close ()
         except IOError as error:
             print ( error )
         except:
             print ( "UNISCAN: Unknown error creating MTL")
 
-    def calcMinMax ( self ):
+    def calcMinMaxBoundingBox ( self ):
         Point = namedtuple('Point', ['x', 'y', 'z'])
-        min = Vec3 (0,0,0)
-        max = Vec3 (0,0,0)
-        for i, line in enumerate ( open ( self.path, 'r' ) ):
+        min = Vec3.zero
+        max = Vec3.zero
+        vertexCount = 0
+        for line in open ( self.path, 'r' ):
             if ( line [:2] == "v " ):
                 vertexValues = line [ 2: ].rstrip ( "\n" ).split ( " " )
                 vertex = Point ( float ( vertexValues [0] ), float( vertexValues [1] ), float ( vertexValues [ 2 ] ) )
-                if ( i == 0 ):
+                vertexCount += 1
+                if ( vertexCount == 1 ):
                     min = Vec3 ( vertex.x, vertex.y, vertex.z )
                     max = Vec3 ( vertex.x, vertex.y, vertex.z )
                 else:
@@ -108,4 +111,4 @@ class Obj ( object ):
                         min.y = vertex.y
                     if ( vertex.z < min.z ):
                         min.z = vertex.z 
-        return min.transformAxisZUp(), max.transformAxisZUp()
+        return Box.createFromMinMax ( min.transformAxisZUp(), max.transformAxisZUp() )

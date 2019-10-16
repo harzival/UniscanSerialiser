@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
 from vec3 import Vec3
 
 class BoxPlotter:
@@ -25,24 +26,24 @@ class BoxPlotter:
         self.ax.plot ( [ start.x, end.x ], [ start.y, end.y ], [ start.z, end.z ], color=color )
     
     def drawDistLines ( self, box ):
-        drawLine ( box.center, box.xBoundPoint, "red" )
-        drawLine ( box.xBoundPoint, box.yBoundPoint, "green" )
-        drawLine ( box.yBoundPoint, box.zBoundPoint, "blue" )
+        self.drawLine ( box.center, box.xBoundPoint, "red" )
+        self.drawLine ( box.xBoundPoint, box.yBoundPoint, "green" )
+        self.drawLine ( box.yBoundPoint, box.zBoundPoint, "blue" )
 
     def drawEdgesFromCornerPoints ( self, cornerPoints ):
         pnts = cornerPoints
-        drawLine ( pnts[0], pnts[1], color = "grey" )
-        drawLine ( pnts[1], pnts[3], color = "grey" )
-        drawLine ( pnts[2], pnts[0], color = "grey" )
-        drawLine ( pnts[3], pnts[2], color = "grey" )
-        drawLine ( pnts[4], pnts[5], color = "grey" )
-        drawLine ( pnts[5], pnts[7], color = "grey" )
-        drawLine ( pnts[6], pnts[4], color = "grey" )
-        drawLine ( pnts[7], pnts[6], color = "grey" )
-        drawLine ( pnts[0], pnts[4], color = "grey" )
-        drawLine ( pnts[1], pnts[5], color = "grey" )
-        drawLine ( pnts[2], pnts[6], color = "grey" )
-        drawLine ( pnts[3], pnts[7], color = "grey" )    
+        self.drawLine ( pnts[0], pnts[1], color = "grey" )
+        self.drawLine ( pnts[1], pnts[3], color = "grey" )
+        self.drawLine ( pnts[2], pnts[0], color = "grey" )
+        self.drawLine ( pnts[3], pnts[2], color = "grey" )
+        self.drawLine ( pnts[4], pnts[5], color = "grey" )
+        self.drawLine ( pnts[5], pnts[7], color = "grey" )
+        self.drawLine ( pnts[6], pnts[4], color = "grey" )
+        self.drawLine ( pnts[7], pnts[6], color = "grey" )
+        self.drawLine ( pnts[0], pnts[4], color = "grey" )
+        self.drawLine ( pnts[1], pnts[5], color = "grey" )
+        self.drawLine ( pnts[2], pnts[6], color = "grey" )
+        self.drawLine ( pnts[3], pnts[7], color = "grey" )    
 
     def drawEdges ( self, box ):
         self.drawEdgesFromCornerPoints ( box.cornerPoints )

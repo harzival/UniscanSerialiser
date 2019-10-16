@@ -6,7 +6,6 @@ from boxPlotter import BoxPlotter
 from b3dm import B3dm
 from misc import createDirIfDoesNotExist
 
-
 import os
 
 def main ():
@@ -26,23 +25,16 @@ def main ():
         obj.convertToGlb ( glbRootDirPath )
         createDirIfDoesNotExist ( os.path.join ( b3dmRootDirPath, obj.glb.lodDirName ) )
         obj.glb.convertToB3dm ( b3dmRootDirPath )
-        obj.glb.b3dm.box = ( Box.createFromMinMax ( obj.calcMinMax () ) )
+        obj.glb.b3dm.box = obj.calcMinMaxBoundingBox()
         boxList.append ( obj.glb.b3dm.box )
     
     worldBox = Box.createParentBoxFromBoxList ( boxList )
 
-    boxPlotter = BoxPlotter
-    boxPlotter.setGraphSizeLimitBox ( worldBox )
-    boxPlotter.drawEdges ( objList[0].glb.b3dm.box )
-    boxPlotter.start()
+    plotter = BoxPlotter ()
+    plotter.setGraphSizeLimitBox ( worldBox )
 
-    
-
-
-        
-
-
-
+    plotter.drawEdges ( objList[0].glb.b3dm.box )
+    plotter.start()
 
 
 main()
