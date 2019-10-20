@@ -105,13 +105,13 @@ class Obj(object):
         mtl_path = self.path.replace(".obj", ".mtl")
         if path.exists(mtl_path):
             print(
-                "UNISCAN: MTL file for OBJ already exists"
-                "will now delete and recreate it."
+                "UNISCAN: MTL file for OBJ already exists,"
+                " will now delete and recreate it."
             )
             remove(mtl_path)
         else:
             print(
-                "UNISCAN: MTL file for OBJ does not exist"
+                "UNISCAN: MTL file for OBJ does not exist,"
                 " will now create it."
             )
         try:

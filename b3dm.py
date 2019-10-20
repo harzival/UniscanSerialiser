@@ -6,6 +6,6 @@ class B3dm:
         self.root_path = root_path
         self.lod_dir_name = lod_dir_name
         self.file_name = file_name
-        self.tileName = file_name.split(".")[0]
+        self.tile_name = file_name.split(".")[0]
         self.path = path.join(root_path, lod_dir_name, file_name)
         self.box = None

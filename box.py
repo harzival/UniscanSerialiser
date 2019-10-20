@@ -36,6 +36,9 @@ class Box:
         self.side_points = self.calc_side_points(self.min, self.max, self.mid)
         self.corner_points = self.calc_corner_points(self.min, self.max)
 
+    def __iter__(self):
+        yield ("box", self.data)
+
     def calc_side_points(self, min, max, mid):
         return [
             Vec3(min.x, mid.y, mid.z),  # Side 1
