@@ -154,5 +154,5 @@ class Obj(object):
                     if vertex.z < min.z:
                         min.z = vertex.z
         return Box.create_from_min_max(
-            min.transform_axis_z_up(), max.transform_axis_z_up()
+            Vec3.transform_axis_z_up(min), Vec3.transform_axis_z_up(max)
         )

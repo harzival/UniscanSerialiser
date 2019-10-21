@@ -25,9 +25,6 @@ class Vec3(object):
     def one(cls):
         return cls(1, 1, 1)
 
-    def transform_axis_z_up(self):
-        old = self
-        self.x = old.x
-        self.y = -old.z
-        self.z = old.y
-        return self
+    @classmethod
+    def transform_axis_z_up(cls, point):
+        return cls(x=point.x, y=-point.z, z=point.y)

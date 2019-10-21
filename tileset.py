@@ -6,13 +6,13 @@ class Tile:
         self.error = error
         self.b3dm = b3dm
         self.child_tile_list = child_tile_list
-        self.url = b3dm.lod_dir_name + "/" + b3dm.file_name
+        self.uri = b3dm.lod_dir_name + "/" + b3dm.file_name
         self.name = b3dm.tile_name
 
     def __iter__(self):
         yield ("boundingVolume", dict(self.box))
         yield ("geometricError", self.error)
-        yield ("content", {"url": self.url})
+        yield ("content", {"uri": self.uri})
         yield ("extras", {"name": self.name})
         if len(self.child_tile_list) > 0:
             yield ("children", [dict(tile) for tile in self.child_tile_list])
@@ -31,8 +31,8 @@ class RootTile:
     def __iter__(self):
         yield ("transform", self.transform)
         yield ("boundingVolume", dict(self.box))
+        yield ("refine", "REFINE")
         yield ("geometricError", self.error)
-        yield ("refine", "REPLACE")
         yield ("children", [dict(tile) for tile in self.child_tile_list])
 
     def dict(self):

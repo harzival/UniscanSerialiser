@@ -10,17 +10,17 @@ def main():
     obj_root_path = (
         "C:/Users/harzival/Desktop"
         "/uniscanTo3DTiles/html-src"
-        "/dog/obj"
+        "/roompart/obj"
     )
     glb_root_path = (
         "C:/Users/harzival/Desktop"
         "/uniscanTo3DTiles/html-src"
-        "/dog/glb"
+        "/roompart/glb"
     )
     b3dm_root_path = (
         "C:/Users/harzival/Desktop"
         "/uniscanTo3DTiles/html-src"
-        "/dog/b3dm"
+        "/roompart/b3dm"
     )
 
     create_dir_if_absent(glb_root_path)
@@ -83,10 +83,10 @@ def main():
 
     root_tile = RootTile(root_transform, root_box, 10000, tile_list)
 
-    tileset = Tileset("0.1a", 100000, root_tile)
+    tileset = Tileset("1.0", 100000, root_tile)
 
     with open(os.path.join(b3dm_root_path, "tileset.json"), 'w') as file:
-        json.dump(dict(tileset), file)
+        json.dump(dict(tileset), file, indent=2)
 
 
 main()
