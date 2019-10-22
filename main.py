@@ -14,7 +14,7 @@ def main():
         "../mesh-data/glb"
     )
     b3dm_root_path = (
-        "../output-tileset"
+        "../tileset"
     )
 
     create_dir_if_absent(glb_root_path)
