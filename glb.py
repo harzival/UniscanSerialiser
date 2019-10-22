@@ -17,8 +17,10 @@ class Glb(object):
         call(
             [
                 "node",
-                "../node_modules/3d-tiles-tools/"
-                "tools/bin/3d-tiles-tools.js",
+                path.join(
+                    path.dirname(__file__),
+                    "../node_modules/3d-tiles-tools/"
+                    "tools/bin/3d-tiles-tools.js"),
                 "glbToB3dm",
                 "--force",
                 "-i",

@@ -27,7 +27,9 @@ class Obj(object):
         call(
             [
                 "node",
-                "../node_modules/obj2gltf/bin/obj2gltf.js",
+                path.join(
+                    path.dirname(__file__),
+                    "../node_modules/obj2gltf/bin/obj2gltf.js"),
                 "--binary",
                 "--unlit",
                 "-i",
@@ -49,8 +51,9 @@ class Obj(object):
         call(
             [
                 "node",
-                "C:/Users/harzival/Desktop/"
-                "../node_modules/obj2gltf/bin/obj2gltf.js",
+                path.join(
+                    path.dirname(__file__),
+                    "../node_modules/obj2gltf/bin/obj2gltf.js"),
                 "--unlit",
                 "-i",
                 self.path,

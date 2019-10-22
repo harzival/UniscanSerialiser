@@ -8,14 +8,19 @@ import json
 
 def main():
     obj_root_path = (
-        "../mesh-data/obj"
+        os.path.join(
+            os.path.dirname(__file__),
+            "../mesh-data/obj"
+        )
     )
-    glb_root_path = (
-        "../mesh-data/glb"
-    )
-    b3dm_root_path = (
-        "../tileset"
-    )
+    glb_root_path = (os.path.join(
+            os.path.dirname(__file__),
+            "../mesh-data/glb"
+    ))
+    b3dm_root_path = (os.path.join(
+            os.path.dirname(__file__),
+            "../tileset"
+    ))
 
     create_dir_if_absent(glb_root_path)
     create_dir_if_absent(b3dm_root_path)
