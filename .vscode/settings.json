@@ -1,7 +1,0 @@
-{
-    "python.pythonPath": "C:\\Users\\harzival\\Anaconda3\\python.exe",
-    "python.linting.enabled": true,
-    "python.analysis.logLevel": "Trace",
-    "python.linting.flake8Enabled": true,
-    "python.formatting.provider": "black"
-}

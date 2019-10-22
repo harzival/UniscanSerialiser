@@ -8,19 +8,13 @@ import json
 
 def main():
     obj_root_path = (
-        "C:/Users/harzival/Desktop"
-        "/uniscanTo3DTiles/html-src"
-        "/roompart/obj"
+        "../mesh-data/obj"
     )
     glb_root_path = (
-        "C:/Users/harzival/Desktop"
-        "/uniscanTo3DTiles/html-src"
-        "/roompart/glb"
+        "../mesh-data/glb"
     )
     b3dm_root_path = (
-        "C:/Users/harzival/Desktop"
-        "/uniscanTo3DTiles/html-src"
-        "/roompart/b3dm"
+        "../output-tileset"
     )
 
     create_dir_if_absent(glb_root_path)

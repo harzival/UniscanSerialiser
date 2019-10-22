@@ -27,8 +27,7 @@ class Obj(object):
         call(
             [
                 "node",
-                "C:/Users/harzival/Desktop/"
-                "uniscanTo3DTiles/dependencies/obj2gltf/bin/obj2gltf.js",
+                "../node_modules/obj2gltf/bin/obj2gltf.js",
                 "--binary",
                 "--unlit",
                 "-i",
@@ -51,7 +50,7 @@ class Obj(object):
             [
                 "node",
                 "C:/Users/harzival/Desktop/"
-                "uniscanTo3DTiles/dependencies/obj2gltf/bin/obj2gltf.js",
+                "../node_modules/obj2gltf/bin/obj2gltf.js",
                 "--unlit",
                 "-i",
                 self.path,
