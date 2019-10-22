@@ -10,17 +10,17 @@ def main():
     obj_root_path = (
         "C:/Users/harzival/Desktop"
         "/uniscanTo3DTiles/html-src"
-        "/roompart/obj"
+        "/dog/obj"
     )
     glb_root_path = (
         "C:/Users/harzival/Desktop"
         "/uniscanTo3DTiles/html-src"
-        "/roompart/glb"
+        "/dog/glb"
     )
     b3dm_root_path = (
         "C:/Users/harzival/Desktop"
         "/uniscanTo3DTiles/html-src"
-        "/roompart/b3dm"
+        "/tileset-example"
     )
 
     create_dir_if_absent(glb_root_path)
