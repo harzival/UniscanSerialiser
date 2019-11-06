@@ -22,6 +22,7 @@ b3dm_root_path = (
     "/dog/tileset"
 )
 
+<<<<<<< HEAD
 root_transform = [
     96.86356343768793,
     24.848542777253734,
@@ -40,6 +41,24 @@ root_transform = [
     4081926.095098698,
     1,
 ]
+=======
+def main():
+    obj_root_path = (
+        "C:/Users/harzival/Desktop"
+        "/uniscanTo3DTiles/html-src"
+        "/dog/obj"
+    )
+    glb_root_path = (
+        "C:/Users/harzival/Desktop"
+        "/uniscanTo3DTiles/html-src"
+        "/dog/glb"
+    )
+    b3dm_root_path = (
+        "C:/Users/harzival/Desktop"
+        "/uniscanTo3DTiles/html-src"
+        "/tileset-example"
+    )
+>>>>>>> origin/master
 
 def main():
     create_dir_if_absent(glb_root_path)
