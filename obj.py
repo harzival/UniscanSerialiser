@@ -27,9 +27,8 @@ class Obj(object):
         call(
             [
                 "node",
-                path.join(
-                    path.dirname(__file__),
-                    "../node_modules/obj2gltf/bin/obj2gltf.js"),
+                "C:/Users/harzival/Desktop/"
+                "uniscanTo3DTiles/dependencies/obj2gltf/bin/obj2gltf.js",
                 "--binary",
                 "--unlit",
                 "-i",
@@ -51,9 +50,8 @@ class Obj(object):
         call(
             [
                 "node",
-                path.join(
-                    path.dirname(__file__),
-                    "../node_modules/obj2gltf/bin/obj2gltf.js"),
+                "C:/Users/harzival/Desktop/"
+                "uniscanTo3DTiles/dependencies/obj2gltf/bin/obj2gltf.js",
                 "--unlit",
                 "-i",
                 self.path,
@@ -69,6 +67,21 @@ class Obj(object):
         )
         self.glb = Glb(glb_root_path, self.lod_dir_name, self.glb_file_name)
         return self.glb
+
+    @staticmethod
+    def get_obj_list_from_lod_path(root_path, lod_dir_name):
+        obj_list = []
+        for file_name in listdir(path.join(root_path, lod_dir_name)):
+            if file_name.endswith(".obj"):
+                obj = Obj(root_path, lod_dir_name, file_name)
+                print(
+                    "UNISCAN: Adding tile"
+                    " {0} from {1} to the serialiser queue.".format(
+                        obj.tileName, obj.lod_dir_name
+                    )
+                )
+                obj_list.append(obj)
+        return obj_list
 
     @staticmethod
     def get_obj_list_from_root_path(root_path):
@@ -127,8 +140,8 @@ class Obj(object):
 
     def calc_geometry_bounding_box(self):
         Point = namedtuple("Point", ["x", "y", "z"])
-        min = Vec3.zero
-        max = Vec3.zero
+        min = Vec3(0,0,0)
+        max = Vec3(0,0,0)
         vertex_count = 0
         for line in open(self.path, "r"):
             if line[:2] == "v ":

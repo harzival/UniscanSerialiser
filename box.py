@@ -85,8 +85,8 @@ class Box:
 
     @classmethod
     def create_parent_box_from_box_list(cls, box_list):
-        min = Vec3.zero
-        max = Vec3.zero
+        min = Vec3(0,0,0)
+        max = Vec3(0,0,0)
         for i, box in enumerate(box_list):
             if i == 0:
                 min = box.min

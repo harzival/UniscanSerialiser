@@ -17,10 +17,9 @@ class Glb(object):
         call(
             [
                 "node",
-                path.join(
-                    path.dirname(__file__),
-                    "../node_modules/3d-tiles-tools/"
-                    "tools/bin/3d-tiles-tools.js"),
+                "C:/Users/harzival/Desktop/uniscanTo3DTiles"
+                "/dependencies/3d-tiles-tools/"
+                "tools/bin/3d-tiles-tools.js",
                 "glbToB3dm",
                 "--force",
                 "-i",
