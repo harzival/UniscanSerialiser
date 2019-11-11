@@ -52,4 +52,3 @@ class Tileset:
 
     def dict(self):
         return dict(self)
-
