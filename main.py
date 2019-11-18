@@ -119,4 +119,4 @@ if __name__ == "__main__":
 
     main(args, loglevel)
 
-# ['L1', ]
+# [ 'LOD_ORDER', 'LOD_DIR', 'GEOM_ERROR', 'CHILD_TILE_COUNT' ]

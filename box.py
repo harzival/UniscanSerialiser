@@ -105,3 +105,18 @@ class Box:
                 if box.min.z < min.z:
                     min.z = box.min.z
         return cls.create_from_min_max(min, max)
+
+    @classmethod
+    def tiler(cls, box, x_parts, y_parts, z_parts):
+        box_list = []
+
+        def split_line(a, b, n):
+            d = abs(b - a) / n
+            return [(i * d, (i + 1) * d) for i in range(n)]
+        for w in split_line(box.min.x, box.max.x, x_parts):
+            for d in split_line(box.min.y, box.max.y, y_parts):
+                for h in split_line(box.min.z, box.max.z, z_parts):
+                    box_list.append(cls.create_from_min_max(
+                        Vec3(w[0], d[0], h[0]),
+                        Vec3(w[1], d[1], h[1])))
+        return box_list

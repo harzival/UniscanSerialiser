@@ -20,7 +20,7 @@ class BoxPlotter:
             else:
                 return c
 
-        center = box.center
+        center = box.mid
         size = largest_between(box.width, box.depth, box.height)
         radius = round(size * (1.5 / 2), 5)
         self.ax.set_xlim(center.x - radius, center.x + radius)
