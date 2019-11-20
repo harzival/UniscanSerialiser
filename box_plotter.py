@@ -37,20 +37,20 @@ class BoxPlotter:
         self.draw_line(box.x_bound_point, box.y_bound_point, "green")
         self.draw_line(box.y_bound_point, box.z_bound_point, "blue")
 
-    def draw_edges_from_corner_points(self, corner_points):
+    def draw_edges_from_corner_points(self, corner_points, color="grey"):
         pnts = corner_points
-        self.draw_line(pnts[0], pnts[1], color="grey")
-        self.draw_line(pnts[1], pnts[3], color="grey")
-        self.draw_line(pnts[2], pnts[0], color="grey")
-        self.draw_line(pnts[3], pnts[2], color="grey")
-        self.draw_line(pnts[4], pnts[5], color="grey")
-        self.draw_line(pnts[5], pnts[7], color="grey")
-        self.draw_line(pnts[6], pnts[4], color="grey")
-        self.draw_line(pnts[7], pnts[6], color="grey")
-        self.draw_line(pnts[0], pnts[4], color="grey")
-        self.draw_line(pnts[1], pnts[5], color="grey")
-        self.draw_line(pnts[2], pnts[6], color="grey")
-        self.draw_line(pnts[3], pnts[7], color="grey")
+        self.draw_line(pnts[0], pnts[1], color)
+        self.draw_line(pnts[1], pnts[3], color)
+        self.draw_line(pnts[2], pnts[0], color)
+        self.draw_line(pnts[3], pnts[2], color)
+        self.draw_line(pnts[4], pnts[5], color)
+        self.draw_line(pnts[5], pnts[7], color)
+        self.draw_line(pnts[6], pnts[4], color)
+        self.draw_line(pnts[7], pnts[6], color)
+        self.draw_line(pnts[0], pnts[4], color)
+        self.draw_line(pnts[1], pnts[5], color)
+        self.draw_line(pnts[2], pnts[6], color)
+        self.draw_line(pnts[3], pnts[7], color)
 
-    def draw_edges(self, box):
-        self.draw_edges_from_corner_points(box.corner_points)
+    def draw_edges(self, box, color="grey"):
+        self.draw_edges_from_corner_points(box.corner_points, color)
